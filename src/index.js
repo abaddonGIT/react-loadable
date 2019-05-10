@@ -158,6 +158,15 @@ function createLoadableComponent(loadFn, options) {
       return init();
     }
 
+    static fetchData(...args) {
+      init().then(() => {
+        const fetchData = res.loaded && res.loaded.fetchData
+        if (typeof fetchData === 'function') {
+          return res.loaded.fetchData(...args);
+        }
+      });
+    };
+
     componentWillMount() {
       this._mounted = true;
       this._loadModule();

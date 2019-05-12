@@ -159,10 +159,10 @@ function createLoadableComponent(loadFn, options) {
     }
 
     static fetchData(...args) {
-      init().then(() => {
-        const fetchData = res.loaded && res.loaded.fetchData
+      return init().then(() => {
+        const fetchData = res.loaded && res.loaded.default.fetchData
         if (typeof fetchData === 'function') {
-          return res.loaded.fetchData(...args);
+          return res.loaded.default.fetchData(...args);
         }
       });
     };
